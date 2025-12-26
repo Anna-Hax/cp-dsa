@@ -1,34 +1,40 @@
 #include <bits/stdc++.h>
-#include <set>
+#include <vector>
+#include <unordered_map>
 #include <iostream>
 using namespace std;
+using ll = long long;
 
-//class Solution{
-//    public:
-//    int getDistNumber(vector<long long> arr){
-//        unordered_map<long long, long long> exist;
-//        int count = 0;
-//        for (long long i = 0; i < arr.size(); i++){
-//            if (!exist[arr[i]]){
-//                count += 1;
-//                exist[arr[i]] = 1;
-//            }
-//        }
-//        return count;
-//    }
-//};
-int main(){
-    //Solution sol;
+ll getDistNumber(const vector<long long>& arr)
+{
+    map<long long, long long> exist;
+    ll count = 0;
+    for (long long i = 0; i < arr.size(); i++)
+    {
+        if (exist.find(arr[i]) == exist.end())
+        {
+            count += 1;
+            exist[arr[i]] = 1;
+        }
+    }
+    return count;
+}
+
+int main()
+{
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    // Solution sol;
 
     long long n;
     cin >> n;
-    set<long long> arr;
-    while (n--){
-        long long x;
+    vector<long long> arr;
+    long long x;
+    while (n--)
+    {
         cin >> x;
-        arr.insert(x);
-        
+        arr.push_back(x);
     }
-    //int answer = sol.getDistNumber(arr);
-    cout << arr.size();
+    ll answer = getDistNumber(arr);
+    cout << answer << endl;
 }

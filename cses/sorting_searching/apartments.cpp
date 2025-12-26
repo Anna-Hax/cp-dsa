@@ -2,21 +2,22 @@
 #include <vector>
 #include <iostream>
 using namespace std;
+using ll = long long;
 
-long long myfun(vector<long long> people, vector<long long> app, long long k){
+ll myfun(vector<long long> people, vector<long long> app, long long k){
     sort(people.begin(), people.end());
     sort(app.begin(), app.end());
 
-    long long i = 0;
-    long long j = 0;
-    long long count = 0;
+    ll i = 0;
+    ll j = 0;
+    ll count = 0;
 
     while (i < people.size() && j < app.size()){
         if (app[j] <= people[i]+k && app[j] >= people[i]-k){
             i++;
             j++;
             count++;
-        } else if (app[j] < people[i]-5){
+        } else if (app[j] < people[i]-k){
             j++;
         } else {
             i++;
@@ -28,11 +29,14 @@ long long myfun(vector<long long> people, vector<long long> app, long long k){
 
 int main(){
 
-    long long n;
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+
+    ll n;
     cin >> n;
-    long long m;
+    ll m;
     cin >> m;
-    long long k;
+    ll k;
     cin >> k;
     vector<long long> people;
     while (n--){
@@ -47,5 +51,6 @@ int main(){
         app.push_back(y); 
     }
 
-    cout << myfun(people, app, k) << endl;
+    ll answer = myfun(people, app, k);
+    cout << answer << endl;
 }

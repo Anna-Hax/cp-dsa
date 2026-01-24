@@ -4,12 +4,29 @@
 using namespace std;
 using ll = long long;
 
-ll getseats(vector<ll>& tickets, vector<ll>& people){
-    sort(tickets.begin(), tickets.end());
-
-    for(int i=0; i<people.size();i++){
-        if()
+vector<ll> getseats(vector<ll>& tickets, vector<ll>& people){
+    
+    map<int, int> mp;
+    for (auto &at : tickets){
+        mp[at]+=1;
     }
+    vector<ll> result;
+
+    for (auto &it : people){
+        while (it){
+            if (mp[it]){
+                mp[it]-=1;
+                result.push_back(it);
+                break;
+            } else {
+                it-=1;
+            }
+        }
+        if (it==0){
+            result.push_back(-1);
+        }
+    }
+    return result;
     
 }
 
@@ -39,6 +56,9 @@ int main()
         cin >> x;
         people.push_back(x);
     }
-    ll answer = getseats(tickets, people);
-    cout << answer << endl;
+    vector<ll> answer = getseats(tickets, people);
+    for (auto &at : answer){
+        cout << at << endl;
+    }
+    
 }

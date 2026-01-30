@@ -19,39 +19,38 @@ const int INF = 1e9 + 7;
 
 using namespace std;
 
-ll myfun(string s) {
+vector<ll> myfun(ll n) {
 
-    ll count_0=0;
-    ll count_1=0;
+    vector<ll> arr(n, 0);
 
-    for(ll i = 0; i < s.size(); i++){
-        if(s[i]=='0'){
-            count_0+=1;
+    ll i, j;
+
+    if(n%2==0){
+        i=n/2;
+        j=i+1;
+    } else {
+        i=(n+1)/2;
+        j=i-1;
+    }
+
+    for(ll m =0; m<n-1; m+=2){
+        arr[m]=i;
+        arr[m+1]=j;
+        if(n%2==0){
+            i-=1;
+            j+=1;
         } else {
-            count_1+=1;
+            j-=1;
+            i+=1;
         }
+        
     }
 
-    ll count=abs(count_0-count_1);
-    if(count==0){
-        return 0;
+    if(n%2!=0){
+        arr[n-1]=n;
     }
-
-    char what = '1';
-    if(count_0>count_1){
-        what='0';
-    }
-    ll fcount=0;
-    for(ll i = s.size()-1; i>=0; i--){
-        if(s[i]==what){
-            count-=1;
-        }
-        fcount+=1;
-        if(count==0){
-            break;
-        }
-    }
-    return fcount;
+    return arr;
+    
     
 }
 
@@ -63,10 +62,14 @@ signed main() {
     cin >> t;
     while (t--) {
 
-        string s;
-        cin >> s;
-        cout << myfun(s) << endl;
+        ll n;
+        cin >> n;
 
+        vector<ll> arr = myfun(n);
+        for(ll i = 0; i<arr.size(); i++){
+            cout << arr[i] << " ";
+        }
+        cout << endl;
     }
     return 0;
 }

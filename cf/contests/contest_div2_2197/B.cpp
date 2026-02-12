@@ -19,20 +19,26 @@ const int INF = 1e9 + 7;
 
 using namespace std;
 
-ll myfun(ll k, vector<ll> arr) {
-
-    ll min_num = INT_MAX;
-
-    for(ll i =0; i<arr.size(); i++){
-        ll temp = arr[i]%k;
-        if(temp==0){
-            return 0;
-        }
-        min_num=min(min_num, k-temp);
+string myfun(ll n, vector<ll>& arr, vector<ll>& perm) {
+    
+    unordered_map<ll, ll> mp;
+    for(ll i = 0; i<n; i++){
+        mp[perm[i]]=i;
     }
+
     
-    return min_num;  
-    
+    for(ll i = 1; i<n; i++){
+        if(arr[i]!=arr[i-1]){
+            ll pos_i = mp[arr[i]];
+            ll pos_i1 = mp[arr[i-1]];
+
+            if(pos_i<pos_i1){
+                return "No";
+            }
+        }
+    }
+
+    return "YES";
 }
 
 
@@ -43,15 +49,20 @@ signed main() {
     cin >> t;
     while (t--) {
 
-        ll n, k;
-        cin >> n >> k;
+        ll n;
+        cin >> n;
         vector<ll> arr;
+        vector<ll> perm;
         ll temp;
-        while(n--){
+        for(ll i = 0; i < n; i++){
+            cin >> temp;
+            perm.push_back(temp);
+        }
+        for(ll i = 0; i < n; i++){
             cin >> temp;
             arr.push_back(temp);
         }
-        cout << myfun(k,arr) << endl;
+        cout << myfun(n, arr, perm) << endl;
 
     }
     return 0;

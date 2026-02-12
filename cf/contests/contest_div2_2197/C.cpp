@@ -19,19 +19,19 @@ const int INF = 1e9 + 7;
 
 using namespace std;
 
-ll myfun(ll k, vector<ll> arr) {
+string myfun(ll p, ll q) {
+    ll val_p = 3 * p;
+    ll val_q = 2 * q;
 
-    ll min_num = INT_MAX;
-
-    for(ll i =0; i<arr.size(); i++){
-        ll temp = arr[i]%k;
-        if(temp==0){
-            return 0;
+    if(p<q){
+        if (val_p >= val_q) {
+            return "Bob";
+        } else {
+            return "Alice";
         }
-        min_num=min(min_num, k-temp);
+    } else {
+        return "Alice";
     }
-    
-    return min_num;  
     
 }
 
@@ -43,15 +43,9 @@ signed main() {
     cin >> t;
     while (t--) {
 
-        ll n, k;
-        cin >> n >> k;
-        vector<ll> arr;
-        ll temp;
-        while(n--){
-            cin >> temp;
-            arr.push_back(temp);
-        }
-        cout << myfun(k,arr) << endl;
+        ll p, q;
+        cin >> p >> q;
+        cout << myfun(p, q) << endl;
 
     }
     return 0;

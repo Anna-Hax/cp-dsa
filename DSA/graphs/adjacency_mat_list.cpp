@@ -3,7 +3,6 @@ using namespace std;
 
 class Solution {
 public:
-    // Function to find the maximum number of content students
     int edgefunction(int v, vector<vector<int>>& edges) {
 
         int matrix[v][v] = {0};

@@ -14,17 +14,27 @@ const ll MAXX = 1e16;
 const int INF = 1e9 + 7;
 
  
-int algo(int n, int x, vector<int> coins){
+int algo(int n){
     
-    vector<int> dp(x+1, 0);
+    vector<int> dp(n+1,0);
     dp[0]=1;
-    for (int coin : coins) {
-        for (int sum = coin; sum <= x; sum++) {
-            dp[sum] = (dp[sum] + dp[sum - coin]) % INF;
-           // cout << "dp[sum]" << dp[sum] << "sum" << sum << endl;
+    
+    for(int i = 1; i<=n; i++){
+        int num = std::abs(i);
+        int maxm=0;
+        while (num > 0) {
+            maxm=max(maxm, num%10);
+            num /= 10;
         }
+        //cout << "i" << i << "maxm" << maxm << endl;
+
+        if(i-maxm!=0){
+            dp[i]+=1;
+        }
+        dp[i]+=dp[i-maxm];
+        //cout << dp[i] << endl;
     }
-    return dp[x];
+    return dp[n];
 
 }
  
@@ -33,17 +43,9 @@ int main() {
     cin.tie(0);
     int n;
     cin >> n;
-    int x;
-    cin >> x;
-    vector<int> coins(n, 0);
-    int temp;
-    for(ll i = 0; i<n; i++){
-        cin >> temp;
-        coins[i]=temp;
-    }
+   
 
-
-    int result = algo(n, x, coins);
+    int result = algo(n);
     
     cout << result << endl;
     

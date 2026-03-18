@@ -15,9 +15,42 @@ const int INF = 1e9 + 7;
 
  
 int algo(int m, vector<string> arr){
+    vector<int> result;
+    int i = 0;
+    int j = 0;
+    while(j<arr.size()){
+        int current=0;
+        if(i==j){
+            j+=1;
+        } else{
+            if(arr[i]!=0){
+                i+=1;
+            } else {
+               // current+=1;
+                for(int w = i; w < arr.size(); w++){
+                    if(arr[w]==0){
+                        current+=1;
+                    }else {
+                        j=w;
+                        break;
+                    }
+                }
 
+                ll num=abs(arr[j]-arr[i-1]);
+                num-=1;
+                bool possible=false;
+                if (num<=current){
+                    possible=true;
+                }
 
-    
+                if(possible){
+                    
+                }
+
+            }
+        }
+
+    }
 
 }
  
@@ -29,14 +62,14 @@ int main() {
     int m;
     cin >> m;
 
-    vector<string> arr(n, "");
-    string s;
+    vector<string> arr(n, 0);
+    int temp;
     for(int i = 0; i<n; i++){
-        cin >> s;
-        arr[i]=s;
+        cin >> temp;
+        arr[i]=temp;
     }
 
-    int result = algo(n, arr);
+    int result = algo(m, arr);
     
     cout << result << endl;
     

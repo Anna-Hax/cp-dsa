@@ -6,7 +6,7 @@ using ll = long long;
 
 vector<ll> getseats(vector<ll>& tickets, vector<ll>& people){
     
-    map<int, int> mp;
+    map<ll, ll> mp;
     for (auto &at : tickets){
         mp[at]+=1;
     }
@@ -33,6 +33,7 @@ vector<ll> getseats(vector<ll>& tickets, vector<ll>& people){
 
 int main()
 {
+    ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr);
 

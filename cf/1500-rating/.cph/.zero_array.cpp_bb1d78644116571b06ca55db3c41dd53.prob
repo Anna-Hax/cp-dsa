@@ -1,0 +1,1 @@
+{"name":"Local: zero_array","url":"d:\\CP\\cf\\1500-rating\\zero_array.cpp","tests":[{"id":1776543050363,"input":"4\n1 1 2 2","output":"YES"},{"id":1776543075787,"input":"5\n1 2 3 4 5","output":"NO"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP\\cf\\1500-rating\\zero_array.cpp","group":"local","local":true}

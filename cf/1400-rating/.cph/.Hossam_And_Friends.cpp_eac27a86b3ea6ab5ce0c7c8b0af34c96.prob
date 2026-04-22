@@ -1,1 +1,0 @@
-{"name":"Local: Hossam_And_Friends","url":"d:\\CP\\cf\\1400-rating\\Hossam_And_Friends.cpp","tests":[{"id":1774820956487,"input":"1\n3 1\n2 3","output":"4"},{"id":1774823013198,"input":"1\n5 4\n1 5\n2 5\n3 4\n3 5","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP\\cf\\1400-rating\\Hossam_And_Friends.cpp","group":"local","local":true}

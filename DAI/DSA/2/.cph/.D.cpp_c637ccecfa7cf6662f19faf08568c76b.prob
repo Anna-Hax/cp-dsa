@@ -1,1 +1,0 @@
-{"name":"Local: D","url":"d:\\CP\\DAI\\DSA\\2\\D.cpp","tests":[{"id":1774786759481,"input":"3 3","output":"2 1 3"},{"id":1774786776917,"input":"4 1","output":"1 2 3 4"},{"id":1774786789858,"input":"5 6","output":"-1"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\CP\\DAI\\DSA\\2\\D.cpp","group":"local","local":true}

@@ -1,65 +1,56 @@
 #include <bits/stdc++.h>
 #include <vector>
 #include <iostream>
+#include <set>
+
 using namespace std;
 using ll = long long;
 
-vector<ll> getseats(vector<ll>& tickets, vector<ll>& people){
+vector<ll> getseats(multiset<ll>& tickets, vector<ll>& people){
     
-    map<ll, ll> mp;
-    for (auto &at : tickets){
-        mp[at]+=1;
-    }
-    vector<ll> result;
+    vector<ll> result(people.size(), 0);
 
-    for (auto &it : people){
-        while (it){
-            if (mp[it]){
-                mp[it]-=1;
-                result.push_back(it);
-                break;
-            } else {
-                it-=1;
-            }
-        }
-        if (it==0){
-            result.push_back(-1);
+    for(ll i = 0; i < people.size(); i++){
+        auto it = tickets.upper_bound(people[i]); // number of tickets greater than people[i];
+
+        if(it == tickets.begin()){
+            result[i] = -1;
+        } else {
+            --it;
+            result[i] = *it;
+            tickets.erase(it);
         }
     }
+
     return result;
-    
 }
-
 
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
-    cout.tie(nullptr);
 
-    ll n;
-    cin >> n;
-    
-    ll m;
-    cin >> m;
+    ll n, m;
+    if (!(cin >> n >> m)) return 0;
 
-    vector<ll> tickets;
-    vector<ll> people;
+    multiset<ll> tickets;
+    vector<ll> people(m);
 
     ll x;
-    while (n--)
-    {
+    for (ll i = 0; i < n; i++) {
         cin >> x;
-        tickets.push_back(x);
+        tickets.insert(x);
     }
-    while (m--)
-    {
-        cin >> x;
-        people.push_back(x);
-    }
-    vector<ll> answer = getseats(tickets, people);
-    for (auto &at : answer){
-        cout << at << endl;
+
+    for (ll i = 0; i < m; i++) {
+        cin >> people[i];
     }
     
+    vector<ll> answer = getseats(tickets, people);
+    
+    for (auto &at : answer){
+        cout << at << "\n"; 
+    }
+    
+    return 0;
 }

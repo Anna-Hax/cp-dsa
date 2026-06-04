@@ -12,65 +12,81 @@ using vvl = vector<vector<ll>>;
 const ll MOD = 998244353;
 const ll MAXX = 1e16;
 const int INF = 1e9 + 7;
-
-using namespace std;
-
-ll myfun(vector<ll> &arrA, vector<ll> &arrB) {
-
-    ll n=arrA.size();
-
-    sort(arrA.begin(), arrA.end());
-    sort(arrB.begin(), arrB.end());
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <set>
 
 
-    ll high=n-1;
-    ll low=0;
-
-    ll mid;
-    ll ans;
-    while(high>=low){
-        mid=(high+low)/2;
-
-        if(arrA[mid]<arrB[mid]){
-            ans=mid;
-            low=mid+1;
-        } else {
-            high=mid-1;
-        }
+ll gcd(ll a, ll b) {
+    while (b) {
+        a %= b;
+        swap(a, b);
     }
-    k=n-mid-1;
-    for(ll i =0; i<=mid; i++){
-        if()
-    }
-    return n-mid-1;
-
+    return a;
 }
 
+bool check(vector<ll>& arr_a, vector<ll>& arr_b, ll num){
+    
+    ll n = arr_a.size();
+   
+    for (ll i = 0; i < n - num; i++) {
+        if (arr_a[i] >= arr_b[i + num]) {
+            return false;
+        }
+    }
+    return true;
+}
 
-signed main() {
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+void solve(){
+    ll n, m;
+    cin >> n >> m;
+    vector<ll> arr_a(n, 0);
+    arr_a[0]=1;
+    for(ll i=1; i<n; i++){
+        cin >> arr_a[i];
+    }
+    vector<ll> arr_b(n, 0);
+    for(ll i=0; i<n; i++){
+        cin >> arr_b[i];
+    }
+     
+    sort(arr_a.begin(), arr_a.end());
+    sort(arr_b.begin(), arr_b.end());
+
+    if(arr_a[0] >= arr_b[n-1]){
+        cout << n << endl;
+        return;
+    }
+
+    ll low = 0;
+    ll high = n-1;
+    ll mid;
+    ll ans=n-1;
+    while(high>=low){
+        mid=(low+high)/2;
+        if(check(arr_a, arr_b, mid)){
+            ans=mid;
+            high=mid-1;
+        } else {
+            low=mid+1;
+        }
+    }
+
+    cout << ans << endl;
+    return;
+    
+}
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    
     ll t;
     cin >> t;
     while (t--) {
-
-      
-        ll n, m;
-        cin >> n >> m;
-        vector<ll> arrA(n, 1);
-        vector<ll> arrB(n, 0);
-        ll temp;
-        for(ll i =1; i<n; i++){
-            cin >> temp;
-            arrA[i]=temp;
-        } 
-        for(ll i =0; i<n; i++){
-            cin >> temp;
-            arrB[i]=temp;
-        }        
-    
-        cout << myfun(arrA, arrB) << endl;
-
+        solve();
     }
     return 0;
 }
+

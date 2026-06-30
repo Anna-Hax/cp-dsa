@@ -13,27 +13,40 @@ const ll MOD = 998244353;
 const ll MAXX = 1e16;
 const int INF = 1e9 + 7;
 
-const ll n = 1e6;
-vector<vector<ll>> dp(n+1, vector<ll>(2, 0));
-void preprocess(){
-    dp[1]={1, 1};
-    for(ll i=2; i<=n; i++){
-        dp[i][0]=(dp[i][0] + 4*dp[i-1][0] + dp[i-1][1])%INF;
-        dp[i][1]=(dp[i][1] + dp[i-1][0] + 2*dp[i-1][1])%INF;
-    }
-}
  
 void solve(){
-    ll x;
-    cin >> x;
-    cout << (dp[x][0]+dp[x][1])%INF << "\n";
+    ll n;
+    cin >> n;
+
+    vector<ll> heights(n, 0);
+    for(ll i=0; i<n; i++){
+        cin >> heights[i];
+    }
+
+    ll curr=1;
+    ll ans=1;
+    ll h=heights[0];
+    ll i=1;
+    while(i<n){
+        if(heights[i]<h){
+            curr+=1;
+        } else {
+            curr=1;
+            h=heights[i];
+            //i+=1;
+        }
+        ans=max(curr, ans);
+        i+=1;
+    }
+
+    cout << ans << "\n";
 }
  
  
 int main() {
     ll t;
-    cin >> t;
-    preprocess();
+    //cin >> t;
+    t=1;
     while(t--){
         solve();
     }

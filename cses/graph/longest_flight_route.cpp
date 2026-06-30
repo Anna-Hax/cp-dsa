@@ -17,7 +17,6 @@ const int INF = 1e9 + 7;
 #include <algorithm>
 #include <set>
 
-ll cycle_start = -1, cycle_end = -1;
 
 void dfs(ll node, vector<vector<ll>>& adj, vector<ll>& vis, vector<ll>& parent, vector<ll>& dist){
     vis[node]=1;

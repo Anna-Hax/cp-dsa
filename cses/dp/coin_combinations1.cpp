@@ -25,6 +25,8 @@ int algo(int n, int x, vector<int> coins){
         for(int coin : coins){
             if(i-coin>=0){
                 dp[i]=(dp[i]+dp[i-coin])%INF;
+            } else {
+                break;
             }
         }
     }
@@ -46,7 +48,7 @@ int main() {
         coins[i]=temp;
     }
 
-
+    sort(coins.begin(), coins.end());
     int result = algo(n, x, coins);
     
     cout << result << endl;

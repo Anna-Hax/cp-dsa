@@ -12,31 +12,36 @@ using vvl = vector<vector<ll>>;
 const ll MOD = 998244353;
 const ll MAXX = 1e16;
 const int INF = 1e9 + 7;
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <cmath>
+#include <set>
 
-const ll n = 1e6;
-vector<vector<ll>> dp(n+1, vector<ll>(2, 0));
-void preprocess(){
-    dp[1]={1, 1};
-    for(ll i=2; i<=n; i++){
-        dp[i][0]=(dp[i][0] + 4*dp[i-1][0] + dp[i-1][1])%INF;
-        dp[i][1]=(dp[i][1] + dp[i-1][0] + 2*dp[i-1][1])%INF;
-    }
-}
- 
+
 void solve(){
-    ll x;
-    cin >> x;
-    cout << (dp[x][0]+dp[x][1])%INF << "\n";
+    ll n;
+    cin >> n;
+    
+    ll ans = 0;
+    
+    for (ll b = 1; b <= n; b++) {
+        ll temp = n / b;
+        ans += temp * temp;
+    }
+    
+    cout << ans << "\n";
+
 }
- 
- 
+
 int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
     ll t;
     cin >> t;
-    preprocess();
-    while(t--){
+    while (t--) {
+
         solve();
     }
- 
     return 0;
 }

@@ -30,6 +30,7 @@ void figureout(vector<vector<int>>& grid, vector<vector<int>>& monsters){
             if(grid[i][j]==-1){
                 q.push({0, {i, j}});
                 vis[i][j]=1;
+                monsters[i][j]=0;
             }
         }
     }
@@ -40,7 +41,6 @@ void figureout(vector<vector<int>>& grid, vector<vector<int>>& monsters){
         int time = q.front().first;
         ll x = q.front().second.first;
         ll y = q.front().second.second;
-        monsters[x][y]=min(time, monsters[x][y]);
         q.pop();
         for(int i=0; i<4; i++){
             int new_x = dx[i]+x;
@@ -49,6 +49,7 @@ void figureout(vector<vector<int>>& grid, vector<vector<int>>& monsters){
                 if(!vis[new_x][new_y]){
                     vis[new_x][new_y]=1;
                     q.push({time+1, {new_x, new_y}});
+                    monsters[new_x][new_y]=time+1;
                 }
             }
         }
